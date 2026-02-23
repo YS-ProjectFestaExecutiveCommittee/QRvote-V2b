@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベント投票</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FingerprintJS (端末特定用ライブラリ) の読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Bot対策（ハニーポット）: 人間には見えないが、Botが自動入力すると不正とみなす -->
+        <input type="text" id="honey-pot" name="email_confirm" autocomplete="off" tabindex="-1">
+
+        <!-- 1. 読み込み中画面 -->
+        <div id="loading-screen" class="screen">
+            <div class="spinner"></div>
+            <p>投票処理中です...</p>
+            <p class="sub-text">画面を閉じずにお待ちください<br>位置情報と端末情報を確認しています</p>
+        </div>
+
+        <!-- 2. 完了画面 -->
+        <div id="success-screen" class="screen hidden">
+            <div class="icon success">✔</div>
+            <h2>投票完了</h2>
+            <p>投票を受け付けました。<br>結果発表までお待ちください。</p>
+        </div>
+
+        <!-- 3. エラー画面 -->
+        <div id="error-screen" class="screen hidden">
+            <div class="icon error">!</div>
+            <h2>エラー</h2>
+            <p id="error-message">予期せぬエラーが発生しました。</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
